@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+ <session-factory>
+  <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+  <property name="hibernate.connection.password">root</property>
+  <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/mycart</property>
+  <property name="hibernate.connection.username">root</property>
+  <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+  <property name="hibernate.hbm2ddl.auto">update</property>
+  <property name="hibernate.show_sql">true</property>
+  <property name="hibernate.format_sql">true</property>
+  <mapping class="com.entities.Users"/>
+  <mapping class="com.servlet.Rservlet"/>
+  <mapping class="com.servlet.LgInServlet"/>
+  <mapping class="com.Dao.userDao"/>
+  <mapping class="com.servlet.LgOutServlet"/>
+  <mapping class="com.entities.Category"/>
+  <mapping class="com.entities.Products"/>
+  <mapping class="com.servlet.POperationServlet"/>
+  <mapping class="com.Dao.CategoryDao"/>
+  <mapping class="com.Dao.ProductDao"/>
+  <mapping class="com.entities.Cart" />
+  <mapping class="com.servlet.AddToCart" />
+ </session-factory>
+</hibernate-configuration>

@@ -1,0 +1,63 @@
+<?xml version="1.0" ?>
+<web-app>
+    <display-name>Archetype Created Web Application</display-name>
+    <servlet>
+        
+        <servlet-name>Rservlet</servlet-name>
+        <servlet-class>Rservlet</servlet-class>
+        <description>Handles user registration</description>
+        <servlet-class>com.servlet.Rservlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LgInServlet</servlet-name>
+        <servlet-class>LgInServlet</servlet-class>
+        <description>Handles user Login</description>
+        <servlet-class>com.servlet.LgInServlet</servlet-class>
+    </servlet>
+     <servlet>
+        <servlet-name>LgOutServlet</servlet-name>
+        <servlet-class>LgOutServlet</servlet-class>
+        <description>Handles user LogOut</description>
+        <servlet-class>com.servlet.LgOutServlet</servlet-class>
+    </servlet>
+    <servlet>
+    <servlet-name>POperationServlet</servlet-name>
+    <description>Handles Category</description>
+    <servlet-class>com.servlet.POperationServlet</servlet-class>
+  </servlet>
+   <servlet>
+        
+        <servlet-name>AddToCart</servlet-name>
+        <servlet-class>AddToCart</servlet-class>
+        <description>Handles add to cart</description>
+        <servlet-class>com.servlet.AddToCart</servlet-class>
+    </servlet>
+
+<servlet-mapping>
+        <servlet-name>AddToCart</servlet-name>
+        <url-pattern>/AddToCart</url-pattern>
+    
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>Rservlet</servlet-name>
+        <url-pattern>/Rservlet</url-pattern>
+    </servlet-mapping>
+    
+     <servlet-mapping>
+        <servlet-name>LgInServlet</servlet-name>
+        <url-pattern>/LgInServlet</url-pattern>
+    </servlet-mapping>
+     <servlet-mapping>
+        <servlet-name>LgOutServlet</servlet-name>
+        <url-pattern>/LgOutServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>POperationServlet</servlet-name>
+        <url-pattern>/POperationServlet</url-pattern>
+    
+    </servlet-mapping>
+    
+    
+     
+ </web-app>

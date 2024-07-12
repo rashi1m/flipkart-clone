@@ -1,0 +1,46 @@
+.custom-bg{
+	background:#4a148c;
+}
+
+.admin .card{
+	border: 1px solid black;
+}
+
+.admin .card:hover{
+	background:cyan;
+}
+
+
+.list-group-item.active{
+	background:#4a148c;
+}
+
+.discount-label{
+	font-size: 10px;
+	font-style:italic;
+}
+
+.product-card:hover{
+	background:cyan;
+}
+
+
+.btn-incre {
+   
+   background:blue;
+   font-size:15px;
+   
+}
+
+.btn-decre {
+   
+    background:blue;
+   font-size:15px;
+}	
+
+.pquantity-input {
+    width: 50px;
+    text-align: center;
+}
+
+
