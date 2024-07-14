@@ -44,6 +44,6 @@
 	
 	</div>
 	</div>
-
+<%@include file="components/common_modal.jsp" %>
 </body>
 </html>

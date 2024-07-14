@@ -21,7 +21,6 @@
   <mapping class="com.servlet.POperationServlet"/>
   <mapping class="com.Dao.CategoryDao"/>
   <mapping class="com.Dao.ProductDao"/>
-  <mapping class="com.entities.Cart" />
-  <mapping class="com.servlet.AddToCart" />
+  
  </session-factory>
 </hibernate-configuration>

@@ -7,9 +7,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-
-import com.entities.Cart;
-import com.entities.Category;
 import com.entities.Products;
 
 public class ProductDao {
@@ -64,35 +61,4 @@ public List<Products> getAllProductsById(int cid){
 		return list;
 	}
 
-public List<Cart> getCartProducts(ArrayList<Cart> cartList){
-	List<Cart> product = new ArrayList<Cart>();
-	
-	try {
-		if(cartList.size()>0) {
-	for(Cart item :cartList) {
-	Session s = this.factory.openSession();
-	Query query =s.createQuery("from Products ");
-
-	Cart row = new Cart();
-	
-	row.setpId(1);
-	
-	row.setCategory(null);
-	row.getPriceAfterApplyingDiscount();
-	row.setpQuantity(1);
-	product.add(row);
-	
-	
-	
-		}
-		}
-	}catch(Exception e)
-	{
-		e.printStackTrace();
-		System.out.println(e.getMessage());
-	}
-	return product;
-	
-	
-}
 }

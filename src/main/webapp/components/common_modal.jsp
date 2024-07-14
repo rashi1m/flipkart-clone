@@ -1,6 +1,6 @@
 <%@page import="com.Dao.ProductDao" %>
 <%@page import="com.helper.FactoryProvider" %>
-<%@page import="com.entities.Cart" %>
+
 <%@page import="java.util.ArrayList" %>
 <%@page import="java.util.List" %>
 <!DOCTYPE html>
@@ -9,27 +9,145 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cart</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+   <script>
+   function add_to_cart(pId,pTitle,PriceAfterApplyingDiscount)
+   {
+
+      let cart= localStorage.getItem("cart");
+       if(cart == null){
+
+        let products=[];
+        let product={productId:pId,productName:pTitle,productQuantity:1,productPrice:PriceAfterApplyingDiscount}
+        products.push(product);
+        localStorage.setItem("cart", JSON.stringify(products));
+          console.log("Product is added for the first time")
+           
+           }else
+               {
+           let pcart = JSON.parse(cart);
+           
+          let oldProduct = pcart.find((item) => item.productId == pId)
+          if(oldProduct){
+
+            //  we have to increase the quantity
+           oldProduct.productQuantity= oldProduct.productQuantity+1
+          pcart.map((item) =>{
+         if(item.productId == oldProduct.productId)
+             {
+
+            item.productQuantity = oldProduct.productQuantity;
+             console.log("Product quantity is increased")
+             }
+
+              })
+              }
+          else{
+
+              //we have to add product
+
+        	  let product={productId:pId,productName:pTitle,productQuantity:1,productPrice:PriceAfterApplyingDiscount}
+              pcart.push(product)
+              localStorage.setItem("cart",JSON.stringify(pcart))
+                console.log("Product quantity is added")
+              }
+                  
+               }
+       updateCart();
+       }
+
+   function updateCart()
+   {
+
+	   let cartString = localStorage.getItem("cart");
+	   let cart =JSON.parse(cartString);
+	   if(cart == null || cart.length == 0){
+
+	        console.log("Cart is empty");
+	        $(".cart-items").html( "( 0 )");
+	        $(".cart-body").html("<h3>Cart doesn't have any item</h3>");
+	        $(".checkout-btn").addClass('disabled');
+	       
+		   }
+	   else{
+
+           console.log(cart)
+           $(".cart-items").html(`(${cart.length})`);
+           let table = `
+           <table class ='table'>
+           <thead class -'thead-light'>
+            <tr>
+             <th>Item Name</th>
+             <th>Price</th>
+             <th>Quantity</th>
+             <th>Total Price</th>
+             <th>Action</th>
+            </tr>
+
+            </thead>
+
+               `;
+           
+           let totalPrice = 0
+           cart.map((item) => {
+
+               table+=`
+                  <tr>
+
+                  <td>${item.productName}</td>
+                  <td>${item.productPrice}</td>
+                  <td>${item.productQuantity}</td>
+                  <td>${item.productQuantity * item.productPrice}</td>
+                  <td><button onclick='deleteFromCart( ${item.productId} )' class ='btn btn-danger btn-sm'>Remove</button></td>
+                
+                   </tr>
+
+                  `
+
+                   totalPrice += item.productPrice * item.productQuantity;
+               })
+
+           table=table+`
+           <tr><td colspa ='5' class='text-right font-weight-bold'> Total Price : ${totalPrice}</td></tr>
+           </table>`
+           $(".cart-body").html(table);
+
+		   }
+
+	   }
+
+   
+	   
+  function deleteFromCart (pId) {
+
+    let cart =JSON.parse(localStorage.getItem('cart'));
+    let newCart = cart.filter((item) => item.productId != pId)
+ 	   localStorage.setItem('cart',JSON.stringify(newCart))
+
+ 	   updateCart();
+
+	   }
+
+  $(document).ready(function (){
+
+      updateCart()
+	   
+	   })
+	   
+   </script>
 </head>
 <body>
-<%
-    ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart_list");
-    List<Cart> cartProduct = null;
-    if (cart_list != null) {
-        ProductDao pdao = new ProductDao(FactoryProvider.getFactory());
-        cartProduct = pdao.getCartProducts(cart_list);
-        request.setAttribute("cart_list", cart_list);
-    }
-%>
+
 <!-- Modal -->
 <div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div style="width:750px;" class="container">
+  <div class="modal-dialog modal-lg" role="document">
+    <div style="width:900px;" class="container">
         <div class="modal-content">
             <div class="modal-header">
                 <div class="container text-center">
@@ -42,37 +160,7 @@
             <div class="container">
                 <div class="modal-body">
                     <div class="cart-body">
-                        <table class="table table-light">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Product</th>
-                                    <th scope="col">Price</th>
-                                    <th scope="col">Quantity</th>
-                                    <th scope="col">Cancel</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <% if (cart_list != null && cartProduct != null) {
-                                    for (Cart c : cartProduct) { %>
-                                        <tr>
-                                            <td><%= c.getpTitle() %></td>
-                                            <td><%= c.getPriceAfterApplyingDiscount() %></td>
-                                            <td><%= c.getpQuantity() %>
-                                                <form action="" method="post" class="form-inline">
-                                                    <input type="hidden" name="id" value="<%= c.getpId() %>" class="form-input">
-                                                    <div class="form-group">
-                                                        <a class="btn btn-sm btn-incre" href="#"><i class="fas fa-plus-square"></i></a>
-                                                        <input type="text" name="pQuantity" class="form-control pQuantity-input" value="1" readonly>
-                                                        <a class="btn btn-sm btn-decre" href="#"><i class="fas fa-minus-square"></i></a>
-                                                    </div>
-                                                </form>
-                                            </td>
-                                            <td><a class="btn btn-sm btn-danger" href="">Remove</a></td>
-                                        </tr>
-                                    <% }
-                                } %>
-                            </tbody>
-                        </table>
+                        
                     </div>
                 </div>
             </div>

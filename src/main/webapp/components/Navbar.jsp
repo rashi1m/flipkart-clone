@@ -25,10 +25,11 @@
           Categories
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">laptop</a>
+          <a class="dropdown-item" href="#">phone</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <a class="dropdown-item" href="#">Kitchen</a>
+           <a class="dropdown-item" href="#">Clothes</a>
         </div>
       </li>
      
@@ -36,7 +37,7 @@
     <ul class="navbar-nav ml-auto">
     
     <li class="nav-item active">
-        <a class="nav-link" href="#!" data-toggle="modal" data-target="#cart" ><i class="fa fa-cart-plus" style="font-size: 20px;"></i><span class = "ml-0 cart-items" style ="margin-top: -10px;" "font-size: 20px;">( 0 )</span> </a>
+        <a class="nav-link" href="#!" data-toggle="modal" data-target="#cart" ><i class="fa fa-cart-plus" style="font-size: 25x;"></i><span class = "ml-0 cart-items" style ="margin-top: -10px;" "font-size: 30px;">(   0   )</span> </a>
      </li>
     
     
@@ -66,9 +67,7 @@
         <a class="nav-link" href="LgOutServlet">Logout </a>
      </li>
    
-    <li class="nav-item active">
-        <a class="nav-link" href="order.jsp">Orders </a>
-     </li>
+  
     	
    <%  }
     

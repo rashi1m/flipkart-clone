@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -23,6 +24,7 @@ public class Products {
 	private Category category;
 	
 	
+	
 	public Products(String pTitle, String pDescription, int pPrice, String pPhoto, int pDiscount, int pQuantity,
 			Category category) {
 		super();
@@ -36,6 +38,10 @@ public class Products {
 	}
 	
 	
+	
+	
+
+
 	public int getpId() {
 		return pId;
 	}
@@ -115,27 +121,20 @@ public class Products {
 		this.category = category;
 	}
 
+	
+
+	
+
 
 	public Products() {
 		
 	}
 
 
-	@Override
-	public String toString() {
-		return "Products [pId=" + pId + ", pTitle=" + pTitle + ", pDescription=" + pDescription + ", pPrice=" + pPrice
-				+ ", pPhoto=" + pPhoto + ", pDiscount=" + pDiscount + ", pQuantity=" + pQuantity + ", category="
-				+ category + "]";
-	}
-	
-	//calculate price after discount
-	
 	public int getPriceAfterApplyingDiscount() {
 		
 		int d=(int)((this.getpDiscount()/100.0)*this.getpPrice());
 		return this.getpPrice()-d;
-		
-		
-		
+
 	}
 }

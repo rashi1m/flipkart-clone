@@ -25,20 +25,8 @@
     <description>Handles Category</description>
     <servlet-class>com.servlet.POperationServlet</servlet-class>
   </servlet>
-   <servlet>
-        
-        <servlet-name>AddToCart</servlet-name>
-        <servlet-class>AddToCart</servlet-class>
-        <description>Handles add to cart</description>
-        <servlet-class>com.servlet.AddToCart</servlet-class>
-    </servlet>
-
-<servlet-mapping>
-        <servlet-name>AddToCart</servlet-name>
-        <url-pattern>/AddToCart</url-pattern>
-    
-    </servlet-mapping>
-
+  
+     
     <servlet-mapping>
         <servlet-name>Rservlet</servlet-name>
         <url-pattern>/Rservlet</url-pattern>
