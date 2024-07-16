@@ -18,7 +18,7 @@
     <div class="card">
    <%@include file="components/message.jsp" %>
     <div class ="card-body px-5">
-    <img class="card-img-top" style="height:20px;" alt="Card image cap" src="Logo/signupLogo.png">
+    <img class="card-img-top" style="height:50px;" alt="Card image cap" src="Logo/signupLogo.png">
      <h2 class="text-center my-3">Sign Up Here!!</h2>
     <form action="Rservlet" method="post">
    <div class="form-group">

@@ -37,7 +37,7 @@
     <ul class="navbar-nav ml-auto">
     
     <li class="nav-item active">
-        <a class="nav-link" href="#!" data-toggle="modal" data-target="#cart" ><i class="fa fa-cart-plus" style="font-size: 25x;"></i><span class = "ml-0 cart-items" style ="margin-top: -10px;" "font-size: 30px;">(   0   )</span> </a>
+        <a class="nav-link" href="#!" data-toggle="modal" data-target="#cart" ><i class="fa fa-cart-plus" style="font-size:25px;"></i><span class = "ml-0 cart-items" style ="margin-top: -10px;">(   0   )</span> </a>
      </li>
     
     
